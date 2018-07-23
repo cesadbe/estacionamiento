@@ -61,7 +61,7 @@ pipeline {
         stage('Checkout') {
             steps{
                 echo "------------>Checkout<------------"
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool:'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:'GitHub_cesadbe', url:'https://github.com/cesadbe/estacionamiento']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool:'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:'GitHub_cesadbe', url:'https://github.com/cesadbe/estacionamiento']]])
             }
         }
 
