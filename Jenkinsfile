@@ -61,8 +61,7 @@ pipeline {
         stage('Checkout') {
             steps{
                 echo "------------>Checkout<------------"
-                git branch: 'develop', credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'git@git.ceiba.com.co:dllo/ceiba_prueba_concepto_PT.git'
-                sh 'gradle clean'
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool:'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:'GitHub_cesadbe', url:'https://github.com/cesadbe/estacionamiento']]])
             }
         }
 
@@ -86,7 +85,7 @@ pipeline {
             steps{
                 echo '------------>Análisis de código estático<------------'
                 withSonarQubeEnv('Sonar') {
-                    sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-projectDev.properties"
+                    sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
                 }
             }
         }
@@ -168,7 +167,7 @@ pipeline {
         failure {
           echo 'This will run only if failed'
           //send notifications about a Pipeline to an email
-          mail (to: 'yuliana.canas@ceiba.com.co',
+          mail (to: 'cesar.beltran@ceiba.com.co',
                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Something is wrong with ${env.BUILD_URL}")
         }
@@ -179,7 +178,7 @@ pipeline {
           echo 'This will run only if the state of the Pipeline has changed'
           echo 'For example, if the Pipeline was previously failing but is now successful'
           //send notifications about a Pipeline to an email
-          mail (to: 'yuliana.canas@ceiba.com.co',
+          mail (to: 'cesar.beltran@ceiba.com.co',
                subject: "Changed State Pipeline: ${currentBuild.fullDisplayName}",
                body: "The state of the Pipeline has changed. See ${env.BUILD_URL}")
         }
