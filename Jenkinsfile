@@ -167,7 +167,7 @@ pipeline {
         failure {
           echo 'This will run only if failed'
           //send notifications about a Pipeline to an email
-          mail (to: 'yuliana.canas@ceiba.com.co',
+          mail (to: 'cesar.beltran@ceiba.com.co',
                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
                body: "Something is wrong with ${env.BUILD_URL}")
         }
@@ -178,7 +178,7 @@ pipeline {
           echo 'This will run only if the state of the Pipeline has changed'
           echo 'For example, if the Pipeline was previously failing but is now successful'
           //send notifications about a Pipeline to an email
-          mail (to: 'yuliana.canas@ceiba.com.co',
+          mail (to: 'cesar.beltran@ceiba.com.co',
                subject: "Changed State Pipeline: ${currentBuild.fullDisplayName}",
                body: "The state of the Pipeline has changed. See ${env.BUILD_URL}")
         }
