@@ -61,8 +61,7 @@ pipeline {
         stage('Checkout') {
             steps{
                 echo "------------>Checkout<------------"
-                git branch: 'develop', credentialsId: '7fe28495-6f45-4577-8c7b-dce727e78f14', url: 'git@git.ceiba.com.co:dllo/ceiba_prueba_concepto_PT.git'
-                sh 'gradle clean'
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool:'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:'GitHub_cesadbe', url:'https://github.com/cesadbe/estacionamiento']]])
             }
         }
 
