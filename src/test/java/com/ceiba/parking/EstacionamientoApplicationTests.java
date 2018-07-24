@@ -22,13 +22,5 @@ public class EstacionamientoApplicationTests {
 		
 		assertEquals(sumaEsperada, a+b);
 	}
-	
-	@Test
-	public void testPruebaTresMasDos() {
-		int a = 3, b = 2;
-		int sumaEsperada = 5;
-		
-		assertEquals(sumaEsperada, a+b);
-	}	
 
 }
