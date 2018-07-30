@@ -1,6 +1,6 @@
 package com.ceiba.parking;
 
-public class ConfigValues {
+public final class ConfigValues {
 
 	private ConfigValues() {
 		
@@ -13,9 +13,9 @@ public class ConfigValues {
 		
 		private final String tipo;
 		private final String descripcion;
-		TipoVehiculo(String tipo_, String descripcion_){
-			this.tipo = tipo_;
-			this.descripcion = descripcion_;
+		TipoVehiculo(String tipo, String descripcion){
+			this.tipo = tipo;
+			this.descripcion = descripcion;
 		}
 		public String getTipo() {
 			return tipo;
