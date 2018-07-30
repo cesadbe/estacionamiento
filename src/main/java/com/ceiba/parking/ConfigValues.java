@@ -48,5 +48,5 @@ public final class ConfigValues {
 	 */
 	public static final String EXC_VEHICULO_NO_PERMITIDO = "Tipo de Vehiculo no permitido";
 	public static final String EXC_EXCEDE_CUPO = "No existen celdas disponibles";
-	public static final String EXC_NO_ES_DIA_HABIL = "No se puede ingresar porque no está en un día hábil";
+	public static final String EXC_NO_ES_DIA_HABIL = "No se puede ingresar porque no esta en un dia habil";
 }
