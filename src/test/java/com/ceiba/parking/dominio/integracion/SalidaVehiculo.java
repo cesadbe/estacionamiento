@@ -1,8 +1,7 @@
 package com.ceiba.parking.dominio.integracion;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
+//import static org.junit.Assert.*;
+//import org.junit.Test;
 
 public class SalidaVehiculo {
 
