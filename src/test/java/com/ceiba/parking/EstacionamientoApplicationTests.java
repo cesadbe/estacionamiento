@@ -17,7 +17,7 @@ public class EstacionamientoApplicationTests {
 	
 	@Test
 	public void testPruebaDosMasDos() {
-		int a = 2, b = 1;
+		int a = 1, b = 2;
 		int sumaEsperada = 3;
 		
 		assertEquals(sumaEsperada, a+b);

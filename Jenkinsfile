@@ -35,8 +35,8 @@ pipeline {
             steps{
                 echo "------------>Unit Tests<------------"
                 sh 'gradle test'
-                junit '**/build/test-results/test/*.xml' //aggregate test results - JUnit
-                jacoco classPattern: '**/build/classes/java', execPattern: '**/build/jacoco/test.exec', sourcePattern: '**/src/main/java'
+                junit '**/build/jacoco/test-results/*.xml' //aggregate test results - JUnit
+                jacoco classPattern: '**/build/classes/java', execPattern: '**/build/jacoco/jacocoTest.exec', sourcePattern: '**/src/main/java'
             }
         }
 
@@ -104,7 +104,7 @@ pipeline {
         }
         success {
           echo 'This will run only if successful'
-          junit '**/build/test-results/test/*.xml'
+          junit '**/build/jacoco/test-results/*.xml'
         }
         failure {
           echo 'This will run only if failed'
