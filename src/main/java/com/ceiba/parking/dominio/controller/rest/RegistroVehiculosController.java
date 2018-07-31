@@ -31,7 +31,7 @@ public class RegistroVehiculosController {
 		try {
 			response.setTicket(ingService.ingresar(request.getVehiculo(), request.getFechaIngreso()));			
 		}catch(BusinessException b) {
-			LOGGER.info("BusinessException catched: " + b.getMessage());
+			LOGGER.info("BusinessException catched={}", b);
 			response.setMessage(b.getMessage());
 		}		
 		
