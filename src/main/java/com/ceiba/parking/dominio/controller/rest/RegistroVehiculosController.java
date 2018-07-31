@@ -18,7 +18,7 @@ import com.ceiba.parking.util.BusinessException;
 @RequestMapping(ConfigValues.API)
 public class RegistroVehiculosController {
 	
-	Logger logger = LoggerFactory.getLogger(RegistroVehiculosController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RegistroVehiculosController.class);
 	
 	@Autowired
 	IngresoService ingService;
@@ -31,7 +31,7 @@ public class RegistroVehiculosController {
 		try {
 			response.setTicket(ingService.ingresar(request.getVehiculo(), request.getFechaIngreso()));			
 		}catch(BusinessException b) {
-			logger.info("BusinessException catched: " + b.getMessage());
+			LOGGER.info("BusinessException catched: " + b.getMessage());
 			response.setMessage(b.getMessage());
 		}		
 		
