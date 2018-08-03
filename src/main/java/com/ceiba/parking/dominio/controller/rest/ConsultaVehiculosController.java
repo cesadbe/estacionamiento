@@ -33,9 +33,6 @@ public class ConsultaVehiculosController {
 		} catch (BusinessException e) {
 			LOGGER.info("BusinessException catched={}", e);
 			resp.setMessage(e.getMessage());
-		} catch(Exception e) {
-			LOGGER.info("RuntimeException catched={}", e);
-			resp.setMessage(e.getMessage());
 		}
 		
 		return resp;
