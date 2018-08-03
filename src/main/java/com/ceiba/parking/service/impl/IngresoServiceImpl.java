@@ -3,21 +3,31 @@ package com.ceiba.parking.service.impl;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.ceiba.parking.ConfigValues;
+import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
 import com.ceiba.parking.entity.Aparcamiento;
 import com.ceiba.parking.model.Vehiculo;
 import com.ceiba.parking.repository.AparcamientoRepository;
+import com.ceiba.parking.service.ConsultaService;
 import com.ceiba.parking.service.IngresoService;
 import com.ceiba.parking.util.BusinessException;
 
 @Service
 public class IngresoServiceImpl implements IngresoService {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(IngresoServiceImpl.class);
+	
 	@Autowired
 	AparcamientoRepository repository;
+	
+	@Autowired
+	ConsultaService consultaService;
 
 	@Override
 	public String ingresar(Vehiculo veh, Date fechaIngreso) throws BusinessException {
@@ -32,6 +42,10 @@ public class IngresoServiceImpl implements IngresoService {
 		
 		if(! esDiaHabil(veh, fechaIngreso)) {
 			throw new BusinessException(ConfigValues.EXC_NO_ES_DIA_HABIL);
+		}
+		
+		if( estaVehiculoYaRegistrado(veh) ) {
+			throw new BusinessException(ConfigValues.EXC_INGRESO_YA_REGISTRADO);
 		}
 		
 		Aparcamiento a = entityConverter(veh, fechaIngreso);
@@ -70,13 +84,23 @@ public class IngresoServiceImpl implements IngresoService {
 		}
 	}
 	
+	public boolean estaVehiculoYaRegistrado(Vehiculo veh) {
+		try {
+			ConsultaResp vehiculo = consultaService.consultaVehiculo(veh.getPlaca(), null);
+			return !StringUtils.isEmpty(vehiculo.getTicket());
+		} catch (BusinessException e) {
+			LOGGER.info("BusinessException ConsultaVehiculo catched={}", e);
+		}
+		return false;
+	}
+	
 	public Aparcamiento entityConverter(Vehiculo veh, Date fechaIngreso) {
 		Aparcamiento a = new Aparcamiento();
 		
 		a.setPlaca(veh.getPlaca());
 		a.setFechaIngeso(fechaIngreso);
 		a.setTipoVehiculo(veh.getTipo());
-		a.setAltoCilindraje(veh.getCilindraje()>500);
+		a.setAltoCilindraje(veh.getCilindraje()>500 && ConfigValues.TipoVehiculo.MOTO.getTipo().equalsIgnoreCase(veh.getTipo()));
 		
 		return a;
 	}

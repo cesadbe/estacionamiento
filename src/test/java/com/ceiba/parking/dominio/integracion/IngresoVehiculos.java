@@ -6,11 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -21,6 +23,7 @@ import com.ceiba.parking.dominio.controller.rest.dto.IngresoReq;
 import com.ceiba.parking.dominio.controller.rest.dto.IngresoResp;
 import com.ceiba.parking.dominio.testdatabuilder.VehiculoTestDataBuilder;
 import com.ceiba.parking.model.Vehiculo;
+import com.ceiba.parking.util.Util;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -28,6 +31,14 @@ public class IngresoVehiculos {
 	
 	@Autowired
     private TestRestTemplate restTemplate;
+	
+	@LocalServerPort
+	private int port;
+	
+	@Before
+	public void limpiarParqueados() {
+		Util.borrarIngresos(port);
+	}
 	
     @Test
 	public void ingresaVehiculoTipoBicicleta() {
@@ -163,9 +174,9 @@ public class IngresoVehiculos {
 	}
 	
 	@Test
-	public void ingresaVehiculoPlacaABC123Domingo() {
+	public void ingresaVehiculoPlacaACB123Domingo() {
 		Vehiculo veh = new VehiculoTestDataBuilder().
-				conPlaca("ABC123").
+				conPlaca("ACB123").
 				build();
 		Date domingoCincoAgosto2018 = new GregorianCalendar(2018, Calendar.AUGUST, 5).getTime();
 		
@@ -209,6 +220,24 @@ public class IngresoVehiculos {
         boolean generoTicket = !StringUtils.isEmpty(response.getTicket());
         assertFalse(generoTicket);		
 		assertEquals(ConfigValues.EXC_NO_ES_DIA_HABIL, response.getMessage());
+	}
+	
+	@Test
+	public void ingresaVehiculoYaRegistrado() {
+		Vehiculo veh = new VehiculoTestDataBuilder().
+				conPlaca("BXP873").
+				build();
+		
+		IngresoReq request = new IngresoReq(veh, new Date());		
+        restTemplate.postForEntity("/api/ingreso", request, IngresoResp.class);
+        
+        ResponseEntity<IngresoResp> responseEntity = restTemplate.postForEntity("/api/ingreso", request, IngresoResp.class);
+        IngresoResp response = responseEntity.getBody();
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        
+        boolean generoTicket = !StringUtils.isEmpty(response.getTicket());
+        assertFalse(generoTicket);		
+		assertEquals(ConfigValues.EXC_INGRESO_YA_REGISTRADO, response.getMessage());
 	}
 
 }
