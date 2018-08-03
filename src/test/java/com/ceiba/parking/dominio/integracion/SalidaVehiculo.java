@@ -1,5 +1,6 @@
 package com.ceiba.parking.dominio.integracion;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.StringUtils;
 
 import com.ceiba.parking.ConfigValues;
 import com.ceiba.parking.dominio.controller.rest.dto.IngresoReq;
@@ -65,6 +67,24 @@ public class SalidaVehiculo {
     	    			
 		boolean hayValorCancelarCalculado = valorCancelarEsperado.compareTo(valorCancelarRecibido)==0;
 		assertTrue(hayValorCancelarCalculado);
+
+    }
+    
+    
+    @Test
+	public void salidaCarroNoRegistrado() {
+    			
+    	String placa = "BXP878";
+    	Date fechaSalida = new Date();
+
+		
+		SalidaReq requestSalida = new SalidaReq(placa, null, fechaSalida);
+		ResponseEntity<SalidaResp> responseSalidaEntity = restTemplate.postForEntity("/api/salida", requestSalida, SalidaResp.class);
+		SalidaResp responseSalida = responseSalidaEntity.getBody();
+		String valorCancelarRecibido = "" + responseSalida.getValorPagar();
+    	    			
+		boolean hayValorCancelarRecibido = StringUtils.isEmpty(valorCancelarRecibido);
+		assertTrue(!hayValorCancelarRecibido);
 
     }
 
