@@ -1,6 +1,5 @@
 package com.ceiba.parking.dominio.integracion;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
@@ -44,7 +43,6 @@ public class SalidaVehiculo {
 	public void salidaCarro1Hora() {
     			
     	String placa = "BXP878";
-    	Date fechaIngreso = new Date();
     	Date fechaSalida = new Date();
     	String ticketGenerado;
     	Double valorCancelarRecibido;
@@ -55,7 +53,7 @@ public class SalidaVehiculo {
 				conPlaca(placa).
 				build();
     	
-    	IngresoReq request = new IngresoReq(carro, fechaIngreso);
+    	IngresoReq request = new IngresoReq(carro, null);
 		ResponseEntity<IngresoResp> responseEntity = restTemplate.postForEntity("/api/ingreso", request, IngresoResp.class);
 		IngresoResp responseIngreso = responseEntity.getBody();
 		ticketGenerado = responseIngreso.getTicket();
