@@ -2,7 +2,7 @@ package com.ceiba.parking.service;
 
 import java.util.List;
 
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
 import com.ceiba.parking.entity.Aparcamiento;
 import com.ceiba.parking.util.BusinessException;
 

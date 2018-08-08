@@ -1,4 +1,4 @@
-package com.ceiba.parking.dominio.controller.rest;
+package com.ceiba.parking.controller.rest;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceiba.parking.ConfigValues;
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
 import com.ceiba.parking.service.ConsultaService;
 import com.ceiba.parking.util.BusinessException;
 

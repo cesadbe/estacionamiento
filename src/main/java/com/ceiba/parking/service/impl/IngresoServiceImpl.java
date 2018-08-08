@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.ceiba.parking.ConfigValues;
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
 import com.ceiba.parking.entity.Aparcamiento;
 import com.ceiba.parking.model.Vehiculo;
 import com.ceiba.parking.repository.AparcamientoRepository;

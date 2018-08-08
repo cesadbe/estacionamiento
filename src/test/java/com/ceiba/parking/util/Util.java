@@ -8,9 +8,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
-import com.ceiba.parking.dominio.controller.rest.dto.SalidaReq;
-import com.ceiba.parking.dominio.controller.rest.dto.SalidaResp;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
+import com.ceiba.parking.controller.rest.dto.SalidaReq;
+import com.ceiba.parking.controller.rest.dto.SalidaResp;
 
 public class Util {
 

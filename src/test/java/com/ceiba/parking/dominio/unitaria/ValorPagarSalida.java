@@ -10,8 +10,8 @@ import org.junit.Test;
 import org.springframework.util.StringUtils;
 
 import com.ceiba.parking.ConfigValues;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
 import com.ceiba.parking.dominio.CalculadoraPago;
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
 
 public class ValorPagarSalida {
 	

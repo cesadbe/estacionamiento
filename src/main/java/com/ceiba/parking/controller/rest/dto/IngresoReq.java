@@ -1,4 +1,4 @@
-package com.ceiba.parking.dominio.controller.rest.dto;
+package com.ceiba.parking.controller.rest.dto;
 
 import java.util.Date;
 

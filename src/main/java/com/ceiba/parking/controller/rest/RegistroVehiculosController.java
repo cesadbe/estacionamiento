@@ -1,4 +1,4 @@
-package com.ceiba.parking.dominio.controller.rest;
+package com.ceiba.parking.controller.rest;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceiba.parking.ConfigValues;
-import com.ceiba.parking.dominio.controller.rest.dto.IngresoReq;
-import com.ceiba.parking.dominio.controller.rest.dto.IngresoResp;
-import com.ceiba.parking.dominio.controller.rest.dto.SalidaReq;
-import com.ceiba.parking.dominio.controller.rest.dto.SalidaResp;
+import com.ceiba.parking.controller.rest.dto.IngresoReq;
+import com.ceiba.parking.controller.rest.dto.IngresoResp;
+import com.ceiba.parking.controller.rest.dto.SalidaReq;
+import com.ceiba.parking.controller.rest.dto.SalidaResp;
 import com.ceiba.parking.service.IngresoService;
 import com.ceiba.parking.service.SalidaService;
 import com.ceiba.parking.util.BusinessException;

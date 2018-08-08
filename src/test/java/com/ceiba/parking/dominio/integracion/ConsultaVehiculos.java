@@ -20,9 +20,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import com.ceiba.parking.ConfigValues;
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
-import com.ceiba.parking.dominio.controller.rest.dto.IngresoReq;
-import com.ceiba.parking.dominio.controller.rest.dto.IngresoResp;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
+import com.ceiba.parking.controller.rest.dto.IngresoReq;
+import com.ceiba.parking.controller.rest.dto.IngresoResp;
 import com.ceiba.parking.dominio.testdatabuilder.VehiculoTestDataBuilder;
 import com.ceiba.parking.model.Vehiculo;
 import com.ceiba.parking.util.Util;

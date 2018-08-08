@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.parking.ConfigValues;
-import com.ceiba.parking.dominio.controller.rest.dto.ConsultaResp;
+import com.ceiba.parking.controller.rest.dto.ConsultaResp;
 
 @Component
 public class CalculadoraPago {
